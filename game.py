@@ -55,21 +55,22 @@ def run_game():
    pygame.display.set_icon(pygame.image.load("stocks.bmp"))
 
 
-   start_button = Button(settings, screen, 'Start', 400, 300, 200, 50, (0, 100, 0))
+   start_button = Button(settings, screen, 'Start', (0, 100, 0))
 
 
    # All game buttons
-   exit_button = Button(settings, screen, 'Exit', 10, 550, 100, 25, (100, 0, 0))
-   skip_button = Button(settings, screen, 'Skip', 700, 550, 100, 25, (0, 0, 100))
+   exit_button = Button(settings, screen, 'Exit', (100, 0, 0))
+
+   #skip_button = Button(settings, screen, 'Skip', (0, 0, 100))
 
 
    # Answer buttons
-   answer_button1 = Button(settings, screen, 'Answer 1', 100, 500, 100, 25, (0, 0, 50))
-   answer_button2 = Button(settings, screen, 'Answer 2', 100, 500, 100, 25, (0, 0, 50))
-   answer_button3 = Button(settings, screen, 'Answer 3', 100, 500, 100, 25, (0, 0, 50))
+   answer_button1 = Button(settings, screen, 'Answer 1', (0, 0, 50))
+   answer_button2 = Button(settings, screen, 'Answer 2', (0, 0, 50))
+   answer_button3 = Button(settings, screen, 'Answer 3', (0, 0, 50))
 
    menu_buttons = {'exit_button': exit_button, 'start_button': start_button}
-   game_buttons = Group(answer_button1, answer_button2, answer_button3, skip_button)
+   game_buttons = {'answer_button1': answer_button1, 'answer_button2': answer_button2, 'answer_button3': answer_button3}
 
 
 

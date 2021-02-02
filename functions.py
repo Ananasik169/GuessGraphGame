@@ -1,6 +1,7 @@
 import pygame
 import sys
 from pygame.locals import *
+from button import Button
 import matplotlib.pyplot as plt
 import matplotlib.backends.backend_agg as agg
 
@@ -14,7 +15,7 @@ def show_menu():
             pygame.quit()
             sys.exit()
 
-      pygame.blit(menu_bckgr, (0,0) )
+      pygame.blit(menu_bckgr, (0, 0))
 
 
 def update_screen(settings, screen, stats, menu_buttons, scoreboard, game_buttons, graphs):
@@ -26,12 +27,15 @@ def update_screen(settings, screen, stats, menu_buttons, scoreboard, game_button
 
 
         menu_buttons['start_button'].draw_button()
-        menu_buttons['exit_button'].draw_button()
+        #menu_buttons['exit_button'].draw_button()
 
         pygame.display.flip()
         return
 
     graphs.draw_graph()
+    for button in game_buttons.values():
+        button.draw_button()
+    #game_buttons['answer_button1'].draw_button()
 
 
     scoreboard.show_score()
@@ -47,6 +51,11 @@ def check_events(settings,screen,stats, menu_buttons, scoreboard):
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x, mouse_y = pygame.mouse.get_pos()
             check_play_button(settings, screen, stats, menu_buttons, mouse_x, mouse_y, scoreboard)
+
+
+def create_game_buttons(settingas, screen, game_buttons):
+    # button1 = Button(settings, screen, '', width, height, button_colour)
+    pass
 
 def check_play_button(settings, screen, stats, menu_buttons, mouse_x, mouse_y, scoreboard):
 
