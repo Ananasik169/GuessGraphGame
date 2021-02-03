@@ -1,11 +1,12 @@
 import pygame
 
 class Settings():
-    """Класс для хранения всех настроек игры Alien Invasion."""
+    """Класс для хранения всех настроек игры Guess Graph Game."""
 
     def __init__(self):
         """Инициализирует настройки игры."""
-
+        self.button_down_image = pygame.image.load("stocks.bmp")
+        #self.button_down_image = pygame.image.load("stocks.bmp")
         # Параметры экрана
         self.screen_width = 800
         self.screen_height = 600

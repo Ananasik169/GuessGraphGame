@@ -1,42 +1,17 @@
 from pygame.sprite import Sprite
 import pygame
 
-
-# class Button(Sprite):
-#
-#     def __init__(self, screen, width, height, inactive_color, active_color):
-#         super().__init__()
-#
-#         self.width = width
-#         self.height = height
-#         self.inactive_color = inactive_color
-#         self.active_color = active_color
-#         self.screen = screen
-#
-#     def draw(self, x, y, msg, action=None):
-#         mouse = pygame.mouse.get_pos()
-#         click = pygame.mouse.get_pressed()
-#
-#         if x < mouse[0] < x + self.width:
-#             if y < mouse[1] < y + self.height:
-#                 pygame.draw.rect(self.screen, self.active_color, x, y, self.width, self.rect)
-#
-#                 if click[0] == 1 and action is not None:
-#                     action()
-#
-#         else:
-#             pygame.draw.rect(self.screen, self.inactive_color, x, y, self.width, self.rect)
-
-
-
 class Button(Sprite):
 
-    def __init__(self, settings, screen, msg, button_colour):
+    def __init__(self, settings, screen, stats, pos, msg, button_colour, callback):
 
         super().__init__()
-
+        # Callback - функция при нажатии кнопки
+        self.callback = callback
         self.screen = screen
         self.screen_rect = screen.get_rect()
+        self.pos = pos
+        self.stats = stats
 
         self.settings = settings
 
@@ -50,8 +25,11 @@ class Button(Sprite):
         self.font = pygame.font.SysFont(None, 48)
 
         self.rect = pygame.Rect(0, 0, self.width, self.height)
-        #self.rect.center = self.screen_rect.center
 
+        #self.rect.center = self.screen_rect.center
+        self.rect.center = self.pos
+
+        self.callback = callback
         self.prep_msg(msg)
 
     def prep_msg(self, msg):
@@ -63,3 +41,22 @@ class Button(Sprite):
     def draw_button(self):
         self.screen.fill(self.button_color, self.rect)
         self.screen.blit(self.msg_image, self.msg_image_rect)
+
+    def handle_event(self, event):
+        """Обработка событий, передаваемых в цикле обработки событий"""
+        # Если событие нажатие кнопки мыши
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            # Если нажата левая кнопка мыши
+            if event.button == 1:
+                # Проверка наличия коллизии кординатов нажатия мыши и кнопки
+                if self.rect.collidepoint(event.pos):
+                    # Изменение изображения на кнопке
+                    self.image = self.settings.button_down_image
+                    self.callback(self.stats)
+        elif event.type == pygame.MOUSEBUTTONUP:
+            if event.button == 1:
+                self.image = self.msg_image
+                if self.rect.collidepoint(event.pos):
+                    print('Button pressed.')
+                    # Вызов функции переданной при инциализации класса
+                    # (при создании объекта)
