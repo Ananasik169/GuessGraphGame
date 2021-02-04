@@ -12,7 +12,7 @@ class Settings():
         self.screen_height = 600
         self.bg_color = (230, 230, 230)
 
-        self.correct_points = 1
+        self.correct_points = 50
 
         self.button_height = 30
         self.button_width = 100
