@@ -3,7 +3,7 @@ import pygame
 
 class Button(Sprite):
 
-    def __init__(self, settings, screen, stats, pos, msg, button_colour, callback):
+    def __init__(self, settings, screen, stats, sb, pos, msg, button_colour, callback):
 
         super().__init__()
         # Callback - функция при нажатии кнопки
@@ -23,6 +23,7 @@ class Button(Sprite):
         self.button_color = button_colour
         self.text_color = (255, 255, 255)
         self.font = pygame.font.SysFont(None, 48)
+        self.scoreboard = sb
 
         self.rect = pygame.Rect(0, 0, self.width, self.height)
 
@@ -52,7 +53,7 @@ class Button(Sprite):
                 if self.rect.collidepoint(event.pos):
                     # Изменение изображения на кнопке
                     self.image = self.settings.button_down_image
-                    self.callback(self.stats)
+                    self.callback(self.stats, self.settings, self.scoreboard)
         elif event.type == pygame.MOUSEBUTTONUP:
             if event.button == 1:
                 self.image = self.msg_image

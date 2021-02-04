@@ -5,9 +5,12 @@ from button import Button
 import matplotlib.pyplot as plt
 import matplotlib.backends.backend_agg as agg
 
-def update_screen(settings, screen, stats, menu_buttons, scoreboard, game_buttons, graphs):
+def update_screen(settings, screen, stats, menu_buttons, scoreboard, game_buttons, graphs, graphs1, graphs2):
     background_image = pygame.image.load("fon.jpg").convert()
     screen.blit(background_image, [0, 0])
+
+
+
 
     if not stats.game_active:
         for menu_button in menu_buttons:
@@ -18,10 +21,20 @@ def update_screen(settings, screen, stats, menu_buttons, scoreboard, game_button
         pygame.display.flip()
         return
 
+    # Отрисовка графиков
     graphs.draw_graph()
+    graphs1.draw_graph()
+    graphs2.draw_graph()
+
     for game_button in game_buttons:
         game_button.draw_button()
 
+    ## SHOWING TEXT
+    font = pygame.font.Font('freesansbold.ttf', 32)
+    text = font.render('GeeksForGeeks', True, (250, 250, 50), (50, 50, 250))
+    textRect = text.get_rect()
+    textRect.center = (400, 400)
+    screen.blit(text, textRect)
 
     scoreboard.show_score()
 
@@ -51,17 +64,20 @@ def create_game_buttons():
     # button1 = Button(settings, screen, '', width, height, button_colour)
     pass
 
-def start_game(stats):
+def start_game(stats, settings, scoreboard):
     stats.reset_stats()
     stats.game_active = True
 
+def exit_game(stats, settings, scoreboard):
+    sys.exit()
 
-def exit_button(settings, screen, stats, menu_buttons, mouse_x, mouse_y, scoreboard):
+def correct_button(stats, settings, scoreboard):
+    stats.score += settings.correct_points
+    scoreboard.prep_score()
 
-    button_clicked = menu_buttons['exit_button'].rect.collidepoint(mouse_x, mouse_y)
-
-    if button_clicked:
-        sys.exit()
-
-def skip_button(settings, screen, stats, menu_buttons, mouse_x, mouse_y, scoreboard):
+def wrong_button(stats, settings, scoreboard):
     pass
+
+def skip_button(stats, settings, scoreboard):
+    pass
+
