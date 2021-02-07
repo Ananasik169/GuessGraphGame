@@ -30,6 +30,7 @@ def update_screen(settings, screen, stats, menu_buttons, scoreboard, game_button
         textRect = text.get_rect()
         textRect.center = (400, 400)
         screen.blit(text, textRect)
+        pygame.display.flip()
 
     if stats.level2:
         graphs2.draw_graph()
@@ -78,32 +79,35 @@ def update_screen(settings, screen, stats, menu_buttons, scoreboard, game_button
     # Отображение последнего прорисованного экрана.
     pygame.display.flip()
 
-def check_events(settings, screen, stats, menu_buttons, game_buttons, scoreboard):
-
-    # for event in pygame.event.get():
-    #     if event.type == pygame.QUIT:
-    #         sys.exit()
-    #     elif event.type == pygame.MOUSEBUTTONDOWN:
-    #         mouse_x, mouse_y = pygame.mouse.get_pos()
-    #         check_play_button(settings, screen, stats, menu_buttons, mouse_x, mouse_y, scoreboard)
+def check_events(settings, screen, stats, menu_buttons, game_buttons1, game_buttons2, game_buttons3, scoreboard):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
 
-        for menu_button in menu_buttons:
-            menu_button.handle_event(event)
+        if not stats.game_active:
+            for menu_button in menu_buttons:
+                menu_button.handle_event(event)
+            return
 
-        for game_button in game_buttons:
-            game_button.handle_event(event)
+        if stats.level1 and stats.game_active:
+            for game_button in game_buttons1:
+                game_button.handle_event(event)
+            return
+
+        if stats.level2 and stats.game_active:
+            for game_button in game_buttons2:
+                game_button.handle_event(event)
+
+        if stats.level3:
+            for game_button in game_buttons3:
+                game_button.handle_event(event)
 
 
-def create_game_buttons():
-    # button1 = Button(settings, screen, '', width, height, button_colour)
-    pass
 
 def start_game(stats, settings, scoreboard):
     stats.reset_stats()
     stats.game_active = True
+    stats.level1 = True
 
 def exit_game(stats, settings, scoreboard):
     sys.exit()

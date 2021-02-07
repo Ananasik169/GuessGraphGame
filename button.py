@@ -1,6 +1,7 @@
 from pygame.sprite import Sprite
 import pygame
 
+
 class Button(Sprite):
 
     def __init__(self, settings, screen, stats, sb, pos, msg, button_colour, callback):
@@ -27,7 +28,7 @@ class Button(Sprite):
 
         self.rect = pygame.Rect(0, 0, self.width, self.height)
 
-        #self.rect.center = self.screen_rect.center
+        # self.rect.center = self.screen_rect.center
         self.rect.center = self.pos
 
         self.callback = callback
@@ -61,5 +62,6 @@ class Button(Sprite):
                     print('Button pressed.')
                     # Вызов функции переданной при инциализации класса
                     # (при создании объекта)
+
     def die(self):
         self.kill()

@@ -130,14 +130,7 @@ def run_game():
 
     while True:
         update_screen(settings, screen, stats, menu_buttons, scoreboard, game_buttons1, game_buttons2, game_buttons3, graphs1, graphs2, graphs3)
-
-        # if stats.game_active:
-
-        # draw_graphs
-        # if stats.game_active:
-        # for button in game_buttons1:
-        # button.draw_button()
-        check_events(settings, screen, stats, menu_buttons, game_buttons1, scoreboard)
+        check_events(settings, screen, stats, menu_buttons, game_buttons1, game_buttons2, game_buttons3, scoreboard)
 
 
 run_game()
