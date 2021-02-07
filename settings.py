@@ -21,5 +21,5 @@ class Settings():
         #self.menu_button_width = 100
 
         # Звуки
-        true_sound = pygame.mixer.Sound('malenkaya-pobeda-4567.ogg')
-        false_sound = pygame.mixer.Sound('zvuk-eta-dver-zablokirovana-4491.ogg')
+        self.true_sound = pygame.mixer.Sound('malenkaya-pobeda-4567.ogg')
+        self.false_sound = pygame.mixer.Sound('zvuk-eta-dver-zablokirovana-4491.ogg')

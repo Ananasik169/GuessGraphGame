@@ -117,6 +117,8 @@ def correct_button_l1(stats, settings, scoreboard):
     stats.level1 = False
     stats.level2 = True
 
+    settings.true_sound.play()
+
 def correct_button_l2(stats, settings, scoreboard):
     stats.score += settings.correct_points
     scoreboard.prep_score()
@@ -124,9 +126,13 @@ def correct_button_l2(stats, settings, scoreboard):
     stats.level2 = False
     stats.level3 = True
 
+    settings.true_sound.play()
+
 def correct_button_l3(stats, settings, scoreboard):
     stats.score += settings.correct_points
     scoreboard.prep_score()
+
+    settings.true_sound.play()
 
 
 # Wrong Buttons
@@ -134,12 +140,16 @@ def wrong_button_l1(stats, settings, scoreboard):
     stats.level1 = False
     stats.level2 = True
 
+    settings.false_sound.play()
+
 def wrong_button_l2(stats, settings, scoreboard):
     stats.level2 = False
     stats.level3 = True
 
+    settings.false_sound.play()
+
 def wrong_button_l3(stats, settings, scoreboard):
-    pass
+    settings.false_sound.play()
 
 def skip_game(stats, settings, scoreboard):
     if stats.level1:

@@ -35,14 +35,7 @@ def run_game():
 
     #x1,y1
 
-
-
-
-
     # Creating graph objects
-
-
-
 
     scoreboard = Scoreboard(settings, screen, stats)
 
