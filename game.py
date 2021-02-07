@@ -33,70 +33,118 @@ def run_game():
 
     # Данные для графиков
 
-    x = np.linspace(-2, 2, 100)
-    y = (x ** 3)
+    #x1,y1
 
-    x1 = np.around(np.arange(-10, 10, 1), decimals=4)
-    y1 = np.sin(x1)
 
-    x2 = np.around(np.arange(-10, 10, 1), decimals=4)
-    y2 = np.log(x2)
 
-    z = np.around(np.arange(-10, 10, 1), decimals=4)
-    k = (z ** 2)
 
-    z1 = np.around(np.arange(-10, 10, 1), decimals=4)
-    k1 = np.exp(z1)
-
-    z2 = np.around(np.arange(-10, 10, 1), decimals=4)
-    k2 = np.sqrt(z2)
-
-    a = np.around(np.arange(-10, 10, 1), decimals=4)
-    b = a
-
-    a1 = np.around(np.arange(-10, 10, 1), decimals=4)
-    b1 = np.cos(a1)
-
-    a2 = np.around(np.arange(-10, 10, 1), decimals=4)
-    b2 = np.cbrt(a2)
 
     # Creating graph objects
 
-    graphs = Graph(x, y, z, k, a, b, screen)
-    graphs1 = Graph(x1, y1, z1, k1, a1, b1, screen)
-    graphs2 = Graph(x2, y2, z2, k2, a2, b2, screen)
+
+
 
     scoreboard = Scoreboard(settings, screen, stats)
 
-    pygame.display.set_caption("Graphics")
+    pygame.display.set_caption("Graph")
     pygame.display.set_icon(pygame.image.load("stocks.bmp"))
 
     # Menu buttons
     start_button = Button(settings, screen, stats, scoreboard, (400, 250), 'Start', (0, 100, 0), callback=start_game)
-    exit_button = Button(settings, screen, stats, scoreboard, (400, 350), 'Exit', (0, 100, 0),  callback=exit_game)
+    exit_button = Button(settings, screen, stats, scoreboard, (400, 350), 'Exit', (100, 0, 0),  callback=exit_game)
 
     # Game buttons
+
+    # level1 game elements
+
+    # buttons
+    skip_button1 = Button(settings, screen, stats, scoreboard, (400, 550), 'Skip', (0, 0, 100), callback=exit_game)
+
     answer_button1 = Button(settings, screen, stats, scoreboard, (200, 500), 'Answer 1', (0, 0, 50),
-                            callback=wrong_button)
+                            callback=wrong_button_l1)
     answer_button2 = Button(settings, screen, stats, scoreboard, (400, 500), 'Answer 2', (0, 0, 50),
-                            callback=correct_button)
+                            callback=correct_button_l1)
     answer_button3 = Button(settings, screen, stats, scoreboard, (600, 500), 'Answer 3', (0, 0, 50),
-                            callback=wrong_button)
-    skip_button = Button(settings, screen, stats, scoreboard, (400, 550), 'Skip', (0, 0, 100), callback=exit_game)
+                            callback=wrong_button_l1)
+    # data
+    x1 = np.linspace(-2, 2, 100)
+    y1 = (x1 ** 3)
+
+    z1 = np.around(np.arange(-10, 10, 1), decimals=4)
+    k1 = (z1 ** 2)
+
+    a1 = np.around(np.arange(-10, 10, 1), decimals=4)
+    b1 = a1
+
+    #graph
+    graphs1 = Graph(x1, y1, z1, k1, a1, b1, screen)
+
+    # level2_game_elements
+
+    # buttons
+    skip_button2 = Button(settings, screen, stats, scoreboard, (400, 550), 'Skip', (0, 0, 100), callback=exit_game)
+
+    answer_button4 = Button(settings, screen, stats, scoreboard, (200, 500), 'Answer 1', (0, 0, 50),
+                            callback=correct_button_l2)
+    answer_button5 = Button(settings, screen, stats, scoreboard, (400, 500), 'Answer 2', (0, 0, 50),
+                            callback=wrong_button_l2)
+    answer_button6 = Button(settings, screen, stats, scoreboard, (600, 500), 'Answer 3', (0, 0, 50),
+                            callback=wrong_button_l2)
+    # data
+    x2 = np.around(np.arange(-10, 10, 1), decimals=4)
+    y2 = np.sin(x2)
+
+    z2 = np.around(np.arange(-10, 10, 1), decimals=4)
+    k2 = np.exp(z2)
+
+    a2 = np.around(np.arange(-10, 10, 1), decimals=4)
+    b2 = np.cos(a2)
+
+    #graphs
+    graphs2 = Graph(x2, y2, z2, k2, a2, b2, screen)
+
+    # level3_game_elements
+
+    #buttons
+    skip_button3 = Button(settings, screen, stats, scoreboard, (400, 550), 'Skip', (0, 0, 100), callback=exit_game)
+
+    answer_button7 = Button(settings, screen, stats, scoreboard, (200, 500), 'Answer 1', (0, 0, 50),
+                            callback=wrong_button_l3)
+    answer_button8 = Button(settings, screen, stats, scoreboard, (400, 500), 'Answer 2', (0, 0, 50),
+                            callback=wrong_button_l3)
+    answer_button9 = Button(settings, screen, stats, scoreboard, (600, 500), 'Answer 3', (0, 0, 50),
+                            callback=correct_button_l3)
+    # data
+
+    x3 = np.around(np.arange(-10, 10, 1), decimals=4)
+    y3 = np.log(x3)
+
+    z3 = np.around(np.arange(-10, 10, 1), decimals=4)
+    k3 = np.sqrt(z3)
+
+    a3 = np.around(np.arange(-10, 10, 1), decimals=4)
+    b3 = np.cbrt(a3)
+
+    # graphs
+    graphs3 = Graph(x3, y3, z3, k3, a3, b3, screen)
+
 
     menu_buttons = Group(start_button, exit_button)
-    game_buttons = Group(answer_button1, answer_button2, answer_button3, skip_button)
+
+    game_buttons1 = Group(answer_button1, answer_button2, answer_button3, skip_button1)
+    game_buttons2 = Group(answer_button4, answer_button5, answer_button6, skip_button2)
+    game_buttons3 = Group(answer_button7, answer_button8, answer_button9, skip_button3)
 
     while True:
-        update_screen(settings, screen, stats, menu_buttons, scoreboard, game_buttons, graphs, graphs1, graphs2)
+        update_screen(settings, screen, stats, menu_buttons, scoreboard, game_buttons1, game_buttons2, game_buttons3, graphs1, graphs2, graphs3)
 
         # if stats.game_active:
 
         # draw_graphs
         # if stats.game_active:
-        # for button in game_buttons:
+        # for button in game_buttons1:
         # button.draw_button()
-        check_events(settings, screen, stats, menu_buttons, game_buttons, scoreboard)
+        check_events(settings, screen, stats, menu_buttons, game_buttons1, scoreboard)
 
 
 run_game()

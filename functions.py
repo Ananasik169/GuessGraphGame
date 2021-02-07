@@ -5,11 +5,9 @@ from button import Button
 import matplotlib.pyplot as plt
 import matplotlib.backends.backend_agg as agg
 
-def update_screen(settings, screen, stats, menu_buttons, scoreboard, game_buttons, graphs, graphs1, graphs2):
+def update_screen(settings, screen, stats, menu_buttons, scoreboard, game_buttons1, game_buttons2, game_buttons3, graphs1, graphs2, graphs3):
     background_image = pygame.image.load("fon.jpg").convert()
     screen.blit(background_image, [0, 0])
-
-
 
 
     if not stats.game_active:
@@ -21,20 +19,59 @@ def update_screen(settings, screen, stats, menu_buttons, scoreboard, game_button
         pygame.display.flip()
         return
 
+    if stats.level1:
+        graphs1.draw_graph()
+
+        for game_button1 in game_buttons1:
+            game_button1.draw_button()
+
+        font = pygame.font.Font('freesansbold.ttf', 32)
+        text = font.render('level1', True, (250, 250, 50), (50, 50, 250))
+        textRect = text.get_rect()
+        textRect.center = (400, 400)
+        screen.blit(text, textRect)
+
+    if stats.level2:
+        graphs2.draw_graph()
+
+        for game_button2 in game_buttons2:
+            game_button2.draw_button()
+
+        font = pygame.font.Font('freesansbold.ttf', 32)
+        text = font.render('level2', True, (250, 250, 50), (50, 50, 250))
+        textRect = text.get_rect()
+        textRect.center = (400, 400)
+        screen.blit(text, textRect)
+
+        # graphs1.kill()
+
+        for game_button1 in game_buttons1:
+            game_button1.kill()
+
+    if stats.level3:
+        graphs3.draw_graph()
+
+        for game_button3 in game_buttons3:
+            game_button3.draw_button()
+
+        font = pygame.font.Font('freesansbold.ttf', 32)
+        text = font.render('level3', True, (250, 250, 50), (50, 50, 250))
+        textRect = text.get_rect()
+        textRect.center = (400, 400)
+        screen.blit(text, textRect)
+
+        for game_button2 in game_buttons2:
+            game_button2.kill()
+
+        # graphs2.kill()
+
+
     # Отрисовка графиков
-    graphs.draw_graph()
-    graphs1.draw_graph()
-    graphs2.draw_graph()
 
-    for game_button in game_buttons:
-        game_button.draw_button()
+    # graphs.draw_graph()
+    # graphs1.draw_graph()
+    #graphs2.draw_graph()
 
-    ## SHOWING TEXT
-    font = pygame.font.Font('freesansbold.ttf', 32)
-    text = font.render('GeeksForGeeks', True, (250, 250, 50), (50, 50, 250))
-    textRect = text.get_rect()
-    textRect.center = (400, 400)
-    screen.blit(text, textRect)
 
     scoreboard.show_score()
 
@@ -71,11 +108,37 @@ def start_game(stats, settings, scoreboard):
 def exit_game(stats, settings, scoreboard):
     sys.exit()
 
-def correct_button(stats, settings, scoreboard):
+
+# Correct Buttons
+def correct_button_l1(stats, settings, scoreboard):
     stats.score += settings.correct_points
     scoreboard.prep_score()
 
-def wrong_button(stats, settings, scoreboard):
+    stats.level1 = False
+    stats.level2 = True
+
+def correct_button_l2(stats, settings, scoreboard):
+    stats.score += settings.correct_points
+    scoreboard.prep_score()
+
+    stats.level2 = False
+    stats.level3 = True
+
+def correct_button_l3(stats, settings, scoreboard):
+    stats.score += settings.correct_points
+    scoreboard.prep_score()
+
+
+# Wrong Buttons
+def wrong_button_l1(stats, settings, scoreboard):
+    stats.level1 = False
+    stats.level2 = True
+
+def wrong_button_l2(stats, settings, scoreboard):
+    stats.level2 = False
+    stats.level3 = True
+
+def wrong_button_l3(stats, settings, scoreboard):
     pass
 
 def skip_button(stats, settings, scoreboard):

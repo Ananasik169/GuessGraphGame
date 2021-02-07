@@ -61,3 +61,5 @@ class Button(Sprite):
                     print('Button pressed.')
                     # Вызов функции переданной при инциализации класса
                     # (при создании объекта)
+    def die(self):
+        self.kill()
