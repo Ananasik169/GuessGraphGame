@@ -58,7 +58,7 @@ def run_game():
     # level1 game elements
 
     # buttons
-    skip_button1 = Button(settings, screen, stats, scoreboard, (400, 550), 'Skip', (0, 0, 100), callback=exit_game)
+    skip_button1 = Button(settings, screen, stats, scoreboard, (400, 550), 'Skip', (0, 0, 100), callback=skip_game)
 
     answer_button1 = Button(settings, screen, stats, scoreboard, (200, 500), 'Answer 1', (0, 0, 50),
                             callback=wrong_button_l1)
@@ -82,7 +82,7 @@ def run_game():
     # level2_game_elements
 
     # buttons
-    skip_button2 = Button(settings, screen, stats, scoreboard, (400, 550), 'Skip', (0, 0, 100), callback=exit_game)
+    skip_button2 = Button(settings, screen, stats, scoreboard, (400, 550), 'Skip', (0, 0, 100), callback=skip_game)
 
     answer_button4 = Button(settings, screen, stats, scoreboard, (200, 500), 'Answer 1', (0, 0, 50),
                             callback=correct_button_l2)
@@ -106,7 +106,7 @@ def run_game():
     # level3_game_elements
 
     #buttons
-    skip_button3 = Button(settings, screen, stats, scoreboard, (400, 550), 'Skip', (0, 0, 100), callback=exit_game)
+    skip_button3 = Button(settings, screen, stats, scoreboard, (400, 550), 'Skip', (0, 0, 100), callback=skip_game)
 
     answer_button7 = Button(settings, screen, stats, scoreboard, (200, 500), 'Answer 1', (0, 0, 50),
                             callback=wrong_button_l3)

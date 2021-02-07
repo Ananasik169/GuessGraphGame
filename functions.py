@@ -141,6 +141,10 @@ def wrong_button_l2(stats, settings, scoreboard):
 def wrong_button_l3(stats, settings, scoreboard):
     pass
 
-def skip_button(stats, settings, scoreboard):
-    pass
-
+def skip_game(stats, settings, scoreboard):
+    if stats.level1:
+        stats.level1 = False
+        stats.level2 = True
+    elif stats.level2:
+        stats.level2 = False
+        stats.level3 = True
